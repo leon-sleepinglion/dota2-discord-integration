@@ -9,15 +9,12 @@ const server = new d2gsi({
 });
 const webhook_url = process.env.DISCORD_WEBHOOK_URL;
 
-let team;
-
 server.events.on('newclient', async (client) => {
 
     console.log("New client connection, IP address: " + client.ip);
 
     client.on('player:activity', async (activity) => {
         if (activity == 'playing') {
-            team = client.gamestate.player.team_name;
             console.log("#start The game has started.");
             axios.post(webhook_url, {
                 content: '#start The game has started.',
@@ -47,7 +44,7 @@ server.events.on('newclient', async (client) => {
 
     // win/lose notifier
     client.on('map:win_team', function(win_team) {
-        if (win_team === team) {
+        if (win_team === client.gamestate.player.team_name) {
             console.log("#win We won!");
             axios.post(webhook_url, {
                 content: '#win We won!',
