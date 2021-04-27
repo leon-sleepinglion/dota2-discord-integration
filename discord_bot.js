@@ -17,8 +17,18 @@ client.on('message', async message => {
         return;
     }
 
+    if (message.content.includes('#bountypower')) {
+        const dispatcher = connection.play('soundpack/bountypower.mp3');
+        return;
+    }
+
     if (message.content.includes('#bounty')) {
         const dispatcher = connection.play('soundpack/bounty.mp3');
+        return;
+    }
+
+    if (message.content.includes('#power')) {
+        const dispatcher = connection.play('soundpack/power.mp3');
         return;
     }
 

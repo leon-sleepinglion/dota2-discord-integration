@@ -22,13 +22,27 @@ server.events.on('newclient', async (client) => {
         }
     });
 
-    // bounty reminder
+    // power and bounty rune reminder
     client.on('map:clock_time', async (time) => {
-        if (time > 0 && (time + 20) % 180 === 0) {
-            console.log("#bounty Bounty runes will spwan in 20 seconds.");
-            axios.post(webhook_url, {
-                content: '#bounty Bounty runes will spwan in 20 seconds.',
-            });
+        if (time > 0) {
+            if ((time + 20) % 180 === 0 && (time + 20) % 120 === 0) {
+                console.log("#bountypower Power and bounty runes will spwan in 20 seconds.");
+                axios.post(webhook_url, {
+                    content: '#bountypower Power and bounty runes will spwan in 20 seconds.',
+                });
+            }
+            else if ((time + 20) % 180 === 0) {
+                console.log("#bounty Bounty runes will spwan in 20 seconds.");
+                axios.post(webhook_url, {
+                    content: '#bounty Bounty runes will spwan in 20 seconds.',
+                });
+            }
+            else if ((time + 20) % 120 === 0) {
+                console.log("#power Power runes will spwan in 20 seconds.");
+                axios.post(webhook_url, {
+                    content: '#power Power runes will spwan in 20 seconds.',
+                });
+            }
         }
     });
 
