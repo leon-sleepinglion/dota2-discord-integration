@@ -4,7 +4,7 @@ const path = require('path');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const allowedId = ['835313003222007868', '385091045135876106', '477826040463360023'];
+const allowedId = ['835313003222007868', '385091045135876106', '477826040463360023', '835451060981858356'];
 
 if (process.env.DISCORD_BOT_LOG_LEVEL === 'debug') {
     const logger = require("discordjs-logger");
