@@ -4,6 +4,8 @@ const path = require('path');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const allowedId = ['835313003222007868', '385091045135876106', '477826040463360023'];
+
 if (process.env.DISCORD_BOT_LOG_LEVEL === 'debug') {
     const logger = require("discordjs-logger");
     logger.all(client);
@@ -22,6 +24,11 @@ client.on('message', async message => {
     // Initialization
     const channel = message.guild.channels.cache.get(process.env.DISCORD_CHANNEL);
     connection = await channel.join();
+
+    if (message.content.startsWith('#') && !allowedId.includes(message.author.id)) {
+        dispatcher = playSoundFromFile('bad.mp3');
+        return;
+    }
 
     if (message.content.includes('#start')) {
         dispatcher = playSoundFromFile('start.mp3');
